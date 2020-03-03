@@ -62,11 +62,7 @@ Data <- Data %>%
                 plbornc == 10 ~ "Poland",
                 plbornc == 27 ~ "Jamaica",
                 plbornc == 24 ~ "Nigeria",
-                TRUE ~ "other")
-        )
-
-Data2<-na.omit(Data)
-
+                TRUE ~ "other"))
 
     ```
 
@@ -134,20 +130,20 @@ Mean age in the UK looks even dispersed across regions and countries of Birth, w
 5. Population pyramid (20 points).
 
     ```{r}
+    
  plot5data <- Data %>% group_by(h_age_dv, sex = sex_dv) %>% count(age = h_age_dv) 
 
  plot5data <- na.omit(plot5data)
   
  plot5 <- ggplot(data = plot5data, mapping = aes(x = h_age_dv, y = ifelse(test = sex == "male", yes = -n, no = n), 
-                     fill = sex)) + 
-      geom_col() +
-    coord_flip() +
-    scale_y_continuous(labels = abs, limits = max(plot5data$n) * c(-1,1))  + xlab('Age')+ ylab('n')
+                     fill = sex)) + geom_col() + coord_flip() + 
+     scale_y_continuous(labels = abs, limits = max(plot5data$n) * c(-1,1))  + xlab('Age')+ ylab('n')
       
-  plot5
+ plot5
     
     
     ```
 
 
 Female distribution greater than male between 25 to 50, also between 67.5 to 75. Otherwise similarly distributed.
+
